@@ -1,2 +1,4 @@
 # library-manager-py
-Verwaltung von Büchern (Titel, Autor, Erscheinungsjahr)
+Konsolenanwendung für die Verwaltung von Büchern (Titel, Autor, Erscheinungsjahr) mithilfe von CRUD
+
+## Starter-Guide
