@@ -18,6 +18,17 @@ def main():
     # list
     sub.add_parser("list", help="Zeigt alle Bücher an")
 
+    # update
+    update_parser = sub.add_parser("update", help="Aktualisiert ein Buch")
+    update_parser.add_argument("id", type=int, help="ID des Buches")
+    update_parser.add_argument("--title")
+    update_parser.add_argument("--author")
+    update_parser.add_argument("--year", type=int)
+
+    # delete
+    delete_parser = sub.add_parser("delete", help="Löscht ein Buch")
+    delete_parser.add_argument("id", type=int, help="ID des Buches")
+
     args = parser.parse_args()
     lib = Library()
 
@@ -35,5 +46,19 @@ def main():
         for book in books:
             print(f"[{book.id}] {book.title} von {book.author} ({book.year})")
 
+    elif args.cmd == "update":
+        success = lib.update_book(args.id, args.title, args.author, args.year)
+        if success:
+            print(f"Buch {args.id} wurde aktualisiert.")
+        else:
+            print(f"Buch {args.id} konnte nicht aktualisiert werden.")
+
+    elif args.cmd == "delete":
+        success = lib.delete_book(args.id)
+        if success:
+            print(f"Buch {args.id} wurde gelöscht.")
+        else:
+            print(f"Buch {args.id} konnte nicht gefunden werden.")
+    
 if __name__ == "__main__":
     main()
